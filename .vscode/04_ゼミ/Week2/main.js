@@ -7,10 +7,22 @@ addbutton.onclick = function() {
   console.log(memoinput.value) //コンソールに表示
   const card = document.createElement("div") //カードを新規作成
   card.textContent = memoinput.value //カードの値を書き換え
+  memocontainer.append(card)
+
   const removebotton = document.createElement("button")
-  removebotton.innerHTML = "削除"
-  document.body.appendChild(removebotton)
 
   memocontainer.append(card)
+  card.append(removebotton)
+
+  removebotton.innerHTML = "削除"
+  removebotton.setAttribute("onclick", "pushButton()")
+  //card.appendChild(removebotton)
+
   memoinput.value = null
+
+  removebotton.onclick = function() {
+    card.textContent = ""
+    removebotton.remove()
+    card.remove()
+  }
 }
